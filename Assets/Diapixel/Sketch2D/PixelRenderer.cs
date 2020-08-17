@@ -8,10 +8,10 @@ namespace Diapixel.Sketch2D
     {
         private Mesh mesh;
 
-        [SerializeField] private List<Vector2Int> pixels = new List<Vector2Int>();
+        private List<Vector2Int> pixels = new List<Vector2Int>();
 
-        [SerializeField] private List<Vector3> vertices = new List<Vector3>();
-        [SerializeField] private List<int> triangles = new List<int>();
+        private List<Vector3> vertices = new List<Vector3>();
+        private List<int> triangles = new List<int>();
 
         private void Start()
         {
@@ -65,11 +65,11 @@ namespace Diapixel.Sketch2D
                 return;
             }
 
-            pixels.Remove(position);
-
             RemoveVertices(position);
 
             UpdateMesh();
+
+            pixels.Remove(position);
         }
 
 
@@ -91,7 +91,7 @@ namespace Diapixel.Sketch2D
         {
             for (int i = 0; i < 6; i++)
             {
-                triangles.RemoveAt(triangles.Count);
+                triangles.RemoveAt(triangles.Count - 1);
             }
         }
 
