@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Diapixel.Sketch2D
 {
@@ -9,6 +10,7 @@ namespace Diapixel.Sketch2D
         [SerializeField] [Range(0.01f, 0.1f)] private float lineThickness = 0.01f;
 
         [Header("References")]
+        [SerializeField] private Transform cameraTransform = null;
         [SerializeField] private Camera mainCamera = null;
 
         private Mesh mesh;
@@ -16,18 +18,24 @@ namespace Diapixel.Sketch2D
         private List<Vector3> vertices = new List<Vector3>();
         private List<int> triangles = new List<int>();
 
+        private Vector3 lastCameraPosition = Vector3.zero;
+
         private void Start()
         {
             MeshFilter meshFilter = GetComponent<MeshFilter>();
             mesh = meshFilter.mesh;
-
-            UpdateGrid();
         }
 
-        // private void Update()
-        // {
-        //     UpdateGrid();
-        // }
+        private void Update()
+        {
+            // Update grid if camera has moved
+            if (cameraTransform.position != lastCameraPosition)
+            {
+                UpdateGrid();
+            }
+
+            lastCameraPosition = cameraTransform.position;
+        }
 
         private void UpdateGrid()
         {
@@ -58,12 +66,12 @@ namespace Diapixel.Sketch2D
             }
 
             // Create horizontal lines
-            for (int y = xMin; y <= yMax; y++)
+            for (int y = yMin; y <= yMax; y++)
             {
                 Vector3 lowerLeft = new Vector3(gridMin.x, y - lineThickness, 0);
-                Vector3 upperLeft = new Vector3(gridMin.x, y - lineThickness, 0);
-                Vector3 upperRight = new Vector3(gridMin.x, y - lineThickness, 0);
-                Vector3 lowerRight = new Vector3(gridMin.x, y - lineThickness, 0);
+                Vector3 upperLeft = new Vector3(gridMin.x, y + lineThickness, 0);
+                Vector3 upperRight = new Vector3(gridMax.x, y + lineThickness, 0);
+                Vector3 lowerRight = new Vector3(gridMax.x, y - lineThickness, 0);
 
                 vertices.Add(lowerLeft);
                 vertices.Add(upperLeft);
@@ -71,6 +79,13 @@ namespace Diapixel.Sketch2D
                 vertices.Add(lowerRight);
             }
 
+            UpdateTriangles();
+
+            UpdateMesh();
+        }
+
+        private void UpdateTriangles()
+        {
             for (int i = 0; i < vertices.Count; i += 4)
             {
                 triangles.Add(i);
@@ -81,8 +96,6 @@ namespace Diapixel.Sketch2D
                 triangles.Add(i + 2);
                 triangles.Add(i + 3);
             }
-
-            UpdateMesh();
         }
 
         private void UpdateMesh()
