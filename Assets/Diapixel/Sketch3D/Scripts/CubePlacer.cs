@@ -28,7 +28,7 @@ namespace Diapixel.Sketch3D
                 cubeRenderer.PlaceCube(UserPosition(), color);
             }
 
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1) && Cursor.lockState == CursorLockMode.Locked && !Operation.IsMouseOverUI(true))
             {
                 RaycastHit hitInfo;
 
@@ -55,7 +55,7 @@ namespace Diapixel.Sketch3D
 
         private void BreakCube()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && Cursor.lockState == CursorLockMode.Locked && !Operation.IsMouseOverUI(true))
             {
                 RaycastHit hitInfo;
 
