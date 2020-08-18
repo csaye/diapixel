@@ -7,6 +7,7 @@ namespace Diapixel.Sketch3D
     public class CubeRenderer : MonoBehaviour
     {
         private Mesh mesh;
+        private MeshCollider meshCollider;
 
         private List<Vector3Int> cubes = new List<Vector3Int>();
 
@@ -18,6 +19,7 @@ namespace Diapixel.Sketch3D
         {
             MeshFilter meshFilter = GetComponent<MeshFilter>();
             mesh = meshFilter.mesh;
+            meshCollider = GetComponent<MeshCollider>();
         }
 
         public void PlaceCube(Vector3Int position, Color color)
@@ -132,6 +134,10 @@ namespace Diapixel.Sketch3D
             mesh.triangles = triangles.ToArray();
 
             mesh.colors = colors.ToArray();
+
+            mesh.RecalculateNormals();
+
+            meshCollider.sharedMesh = mesh;
         }
     }
 }

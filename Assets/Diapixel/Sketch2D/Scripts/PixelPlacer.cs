@@ -80,6 +80,5 @@ namespace Diapixel.Sketch2D
             Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             return new Vector2Int(Mathf.FloorToInt(mousePos.x), Mathf.FloorToInt(mousePos.y));
         }
-
     }
 }

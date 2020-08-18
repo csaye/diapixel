@@ -7,6 +7,9 @@ namespace Diapixel.Sketch3D
         [Header("Attributes")]
         [SerializeField] private float mouseSensitivity = 0;
 
+        [Header("References")]
+        [SerializeField] private Transform userTransform = null;
+
         private float yRotation;
 
         private void Start()
@@ -43,7 +46,7 @@ namespace Diapixel.Sketch3D
 
         private void LookHorizontal(float mouseX)
         {
-            transform.Rotate(Vector3.up * mouseX);
+            userTransform.Rotate(Vector3.up * mouseX);
         }
 
         private void LookVertical(float mouseY)
@@ -51,7 +54,7 @@ namespace Diapixel.Sketch3D
             yRotation -= mouseY;
             yRotation = Mathf.Clamp(yRotation, -90, 90);
 
-            transform.localRotation = Quaternion.Euler(yRotation, transform.localRotation.y, 0);
+            transform.localRotation = Quaternion.Euler(yRotation, transform.localRotation.y, transform.localRotation.z);
         }
 
         private Vector2 MouseAxis()

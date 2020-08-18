@@ -650,7 +650,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 320438930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1311349265}
@@ -719,6 +719,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d09f0866bb24dd9997ca7e6fb5024f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubeRenderer: {fileID: 969904749}
+  userTransform: {fileID: 320438931}
 --- !u!4 &341826265
 Transform:
   m_ObjectHideFlags: 0
@@ -1417,8 +1419,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 969904748}
+  - component: {fileID: 969904749}
   - component: {fileID: 969904747}
   - component: {fileID: 969904746}
+  - component: {fileID: 969904745}
   m_Layer: 0
   m_Name: CubeRenderer
   m_TagString: Untagged
@@ -1426,6 +1430,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &969904745
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969904744}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!23 &969904746
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1487,6 +1505,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &969904749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969904744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8598ae4ccad04d79afdaf815c1d905a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1016807238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1895,7 +1925,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -1920,7 +1950,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311349263}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 320438931}
@@ -1947,6 +1977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 3
+  userTransform: {fileID: 320438931}
 --- !u!1 &1326403677
 GameObject:
   m_ObjectHideFlags: 0
