@@ -688,8 +688,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  flySpeed: 3
   sprintSpeed: 5
+  flySpeed: 3
 --- !u!1 &341826263
 GameObject:
   m_ObjectHideFlags: 0

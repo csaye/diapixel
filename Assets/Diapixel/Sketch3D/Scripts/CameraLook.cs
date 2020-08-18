@@ -16,7 +16,21 @@ namespace Diapixel.Sketch3D
 
         private void Update()
         {
+            UpdateCursorState();
             Look();
+        }
+
+        private void UpdateCursorState()
+        {
+            if (Input.GetKeyDown("escape"))
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+
+            if (Input.GetMouseButtonDown(0) && !Operation.IsMouseOverUI(false))
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
 
         private void Look()

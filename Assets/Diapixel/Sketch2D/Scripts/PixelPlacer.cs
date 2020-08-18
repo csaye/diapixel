@@ -21,7 +21,7 @@ namespace Diapixel.Sketch2D
 
         private void PlacePixel()
         {
-            if (Input.GetMouseButtonDown(1) && !IsMouseOverUI())
+            if (Input.GetMouseButtonDown(1) && !Operation.IsMouseOverUI(true))
             {
                 pixelRenderer.PlacePixel(MousePosition(), color);
 
@@ -49,7 +49,7 @@ namespace Diapixel.Sketch2D
 
         private void BreakPixel()
         {
-            if (Input.GetMouseButtonDown(0) && !IsMouseOverUI())
+            if (Input.GetMouseButtonDown(0) && !Operation.IsMouseOverUI(true))
             {
                 pixelRenderer.BreakPixel(MousePosition());
 
@@ -73,18 +73,6 @@ namespace Diapixel.Sketch2D
 
                 yield return null;
             }
-        }
-
-        private bool IsMouseOverUI()
-        {
-            PointerEventData eventData = new PointerEventData(EventSystem.current);
-            eventData.position = Input.mousePosition;
-
-            List<RaycastResult> results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(eventData, results);
-
-            // More than just background image
-            return results.Count > 1;
         }
 
         private Vector2Int MousePosition()
