@@ -16,7 +16,7 @@ namespace Diapixel.Sketch2D
 
         private void PlacePixel()
         {
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1) && !MouseOverUI())
             {
                 pixelRenderer.PlacePixel(MousePosition());
             }
@@ -24,10 +24,15 @@ namespace Diapixel.Sketch2D
 
         private void BreakPixel()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !MouseOverUI())
             {
                 pixelRenderer.BreakPixel(MousePosition());
             }
+        }
+        
+        private bool MouseOverUI()
+        {
+
         }
 
         private Vector2Int MousePosition()
@@ -35,5 +40,6 @@ namespace Diapixel.Sketch2D
             Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             return new Vector2Int(Mathf.FloorToInt(mousePos.x), Mathf.FloorToInt(mousePos.y));
         }
+
     }
 }
