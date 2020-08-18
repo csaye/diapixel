@@ -12,7 +12,7 @@ namespace Diapixel.Sketch2D
 
         private List<Vector3> vertices = new List<Vector3>();
         private List<int> triangles = new List<int>();
-        [SerializeField] private List<Color> colors = new List<Color>();
+        private List<Color> colors = new List<Color>();
 
         private void Start()
         {

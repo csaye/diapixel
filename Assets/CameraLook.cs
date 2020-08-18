@@ -1,0 +1,51 @@
+﻿using UnityEngine;
+
+namespace Diapixel.Sketch3D
+{
+    public class CameraLook : MonoBehaviour
+    {
+        [Header("Attributes")]
+        [SerializeField] private float mouseSensitivity = 0;
+
+        private float yRotation;
+
+        private void Start()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        private void Update()
+        {
+            Look();
+        }
+
+        private void Look()
+        {
+            Vector2 mouseAxis = MouseAxis() * mouseSensitivity;
+
+            LookHorizontal(mouseAxis.x);
+            LookVertical(mouseAxis.y);
+        }
+
+        private void LookHorizontal(float mouseX)
+        {
+            transform.Rotate(Vector3.up * mouseX);
+        }
+
+        private void LookVertical(float mouseY)
+        {
+            yRotation -= mouseY;
+            yRotation = Mathf.Clamp(yRotation, -90, 90);
+
+            transform.localRotation = Quaternion.Euler(yRotation, transform.localRotation.y, 0);
+        }
+
+        private Vector2 MouseAxis()
+        {
+            float mouseX = Input.GetAxis("Mouse X");
+            float mouseY = Input.GetAxis("Mouse Y");
+
+            return new Vector2(mouseX, mouseY);
+        }
+    }
+}
