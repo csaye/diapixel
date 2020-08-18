@@ -688,4 +688,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7545009bb8754ebcb88081ac47dd093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  moveSpeed: 3
+  zoomSpeed: 3
+  maxZoom: 10
+  minZoom: 2
+  gridRenderer: {fileID: 680536497}

@@ -20,6 +20,8 @@ namespace Diapixel.Sketch2D
 
         private Vector3 lastCameraPosition = Vector3.zero;
 
+        private float offscreenExtent = 1;
+
         private void Start()
         {
             MeshFilter meshFilter = GetComponent<MeshFilter>();
@@ -37,7 +39,7 @@ namespace Diapixel.Sketch2D
             lastCameraPosition = cameraTransform.position;
         }
 
-        private void UpdateGrid()
+        public void UpdateGrid()
         {
             vertices.Clear();
             triangles.Clear();
@@ -54,10 +56,10 @@ namespace Diapixel.Sketch2D
             // Create vertical lines
             for (int x = xMin; x <= xMax; x++)
             {
-                Vector3 lowerLeft = new Vector3(x - lineThickness, gridMin.y, 0);
-                Vector3 upperLeft = new Vector3(x - lineThickness, gridMax.y, 0);
-                Vector3 upperRight = new Vector3(x + lineThickness, gridMax.y, 0);
-                Vector3 lowerRight = new Vector3(x + lineThickness, gridMin.y, 0);
+                Vector3 lowerLeft = new Vector3(x - lineThickness, gridMin.y - offscreenExtent, 0);
+                Vector3 upperLeft = new Vector3(x - lineThickness, gridMax.y + offscreenExtent, 0);
+                Vector3 upperRight = new Vector3(x + lineThickness, gridMax.y + offscreenExtent, 0);
+                Vector3 lowerRight = new Vector3(x + lineThickness, gridMin.y - offscreenExtent, 0);
 
                 vertices.Add(lowerLeft);
                 vertices.Add(upperLeft);
@@ -68,10 +70,10 @@ namespace Diapixel.Sketch2D
             // Create horizontal lines
             for (int y = yMin; y <= yMax; y++)
             {
-                Vector3 lowerLeft = new Vector3(gridMin.x, y - lineThickness, 0);
-                Vector3 upperLeft = new Vector3(gridMin.x, y + lineThickness, 0);
-                Vector3 upperRight = new Vector3(gridMax.x, y + lineThickness, 0);
-                Vector3 lowerRight = new Vector3(gridMax.x, y - lineThickness, 0);
+                Vector3 lowerLeft = new Vector3(gridMin.x - offscreenExtent, y - lineThickness, 0);
+                Vector3 upperLeft = new Vector3(gridMin.x - offscreenExtent, y + lineThickness, 0);
+                Vector3 upperRight = new Vector3(gridMax.x + offscreenExtent, y + lineThickness, 0);
+                Vector3 lowerRight = new Vector3(gridMax.x + offscreenExtent, y - lineThickness, 0);
 
                 vertices.Add(lowerLeft);
                 vertices.Add(upperLeft);
