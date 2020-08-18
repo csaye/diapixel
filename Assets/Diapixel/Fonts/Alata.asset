@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Alata
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 74099289
   material: {fileID: 3014945410844502465}
-  materialHashCode: 0
+  materialHashCode: -1498379047
   m_Version: 1.1.0
   m_SourceFontFileGUID: 45cd56526cac44c6ebe0888b6395d30c
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 45cd56526cac44c6ebe0888b6395d30c,
@@ -5812,9 +5812,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.8333333
+    - _ScaleRatioB: 0.6770833
+    - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0

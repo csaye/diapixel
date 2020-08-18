@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Diapixel/Scenes/MainMenu.unity
+    guid: 919b28891b8824a2aa9aa3eb0faf4319
+  - enabled: 1
     path: Assets/Diapixel/Sketch2D/Scenes/Workspace2D.unity
     guid: 9752b4e9d532c45759a0f32a7b89aec3
   m_configObjects: {}
