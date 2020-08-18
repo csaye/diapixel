@@ -12,6 +12,7 @@ namespace Diapixel.Sketch2D
 
         private List<Vector3> vertices = new List<Vector3>();
         private List<int> triangles = new List<int>();
+        [SerializeField] private List<Color> colors = new List<Color>();
 
         private void Start()
         {
@@ -30,6 +31,8 @@ namespace Diapixel.Sketch2D
             pixels.Add(position);
 
             AddVertices((Vector3Int)position);
+
+            AddColors(color);
 
             UpdateMesh();
         }
@@ -57,6 +60,14 @@ namespace Diapixel.Sketch2D
             triangles.Add(pixelIndex + 3);
         }
 
+        private void AddColors(Color color)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                colors.Add(color);
+            }
+        }
+
         public void BreakPixel(Vector2Int position)
         {
             // If no pixel to break, return
@@ -82,6 +93,7 @@ namespace Diapixel.Sketch2D
             for (int i = 0; i < 4; i++)
             {
                 vertices.RemoveAt(positionIndex);
+                colors.RemoveAt(positionIndex);
             }
 
             RemoveTriangles();
@@ -101,6 +113,8 @@ namespace Diapixel.Sketch2D
 
             mesh.vertices = vertices.ToArray();
             mesh.triangles = triangles.ToArray();
+
+            mesh.colors = colors.ToArray();
         }
     }
 }
