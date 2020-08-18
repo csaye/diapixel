@@ -23,5 +23,14 @@ namespace Diapixel
                 return results.Count > 0;
             }
         }
+
+        public static Vector3Int FloorToInt(Vector3 v3)
+        {
+            int x = Mathf.FloorToInt(v3.x);
+            int y = Mathf.FloorToInt(v3.y);
+            int z = Mathf.FloorToInt(v3.z);
+
+            return new Vector3Int(x, y, z);
+        }
     }
 }
