@@ -19,7 +19,7 @@ namespace Diapixel.Sketch2D
             mesh = meshFilter.mesh;
         }
 
-        public void PlacePixel(Vector2Int position)
+        public void PlacePixel(Vector2Int position, Color color)
         {
             // If pixel already exists at position, break pixel
             if (pixels.Contains(position))

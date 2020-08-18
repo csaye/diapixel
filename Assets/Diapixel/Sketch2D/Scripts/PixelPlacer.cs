@@ -10,6 +10,8 @@ namespace Diapixel.Sketch2D
         [SerializeField] private PixelRenderer pixelRenderer = null;
         [SerializeField] private Camera mainCamera = null;
 
+        public Color color {get; set;} = Color.black;
+
         private void Update()
         {
             PlacePixel();
@@ -20,7 +22,7 @@ namespace Diapixel.Sketch2D
         {
             if (Input.GetMouseButtonDown(1) && !IsMouseOverUI())
             {
-                pixelRenderer.PlacePixel(MousePosition());
+                pixelRenderer.PlacePixel(MousePosition(), color);
             }
         }
 
