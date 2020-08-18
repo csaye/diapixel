@@ -15,6 +15,7 @@ namespace Diapixel.Sketch3D
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         private void Update()
@@ -28,16 +29,20 @@ namespace Diapixel.Sketch3D
             if (Input.GetKeyDown("escape"))
             {
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
 
             if (Input.GetMouseButtonDown(0) && !Operation.IsMouseOverUI(false))
             {
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
         }
 
         private void Look()
         {
+            if (Cursor.lockState != CursorLockMode.Locked) return;
+
             Vector2 mouseAxis = MouseAxis() * mouseSensitivity;
 
             LookHorizontal(mouseAxis.x);
