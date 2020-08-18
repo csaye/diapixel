@@ -177,7 +177,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: z/x - zoom
+  m_text: 'z/x - zoom
+
+    g - toggle grid'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26a7548cf85bc49c8a1c84cfe6cd0391, type: 2}
   m_sharedMaterial: {fileID: 3014945410844502465, guid: 26a7548cf85bc49c8a1c84cfe6cd0391,

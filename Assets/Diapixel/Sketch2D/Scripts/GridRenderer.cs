@@ -22,6 +22,8 @@ namespace Diapixel.Sketch2D
 
         private float offscreenExtent = 1;
 
+        private bool active = true;
+
         private void Start()
         {
             MeshFilter meshFilter = GetComponent<MeshFilter>();
@@ -30,6 +32,8 @@ namespace Diapixel.Sketch2D
 
         private void Update()
         {
+            UpdateActive();
+
             // Update grid if camera has moved
             if (cameraTransform.position != lastCameraPosition)
             {
@@ -39,10 +43,25 @@ namespace Diapixel.Sketch2D
             lastCameraPosition = cameraTransform.position;
         }
 
+        private void UpdateActive()
+        {
+            if (Input.GetKeyDown("g"))
+            {
+                active = !active;
+                UpdateGrid();
+            }
+        }
+
         public void UpdateGrid()
         {
             vertices.Clear();
             triangles.Clear();
+
+            if (!active)
+            {
+                UpdateMesh();
+                return;
+            }
 
             // Get min and max grid values from what is visible on screen
             Vector2 gridMin = mainCamera.ScreenToWorldPoint(Vector2.zero);
