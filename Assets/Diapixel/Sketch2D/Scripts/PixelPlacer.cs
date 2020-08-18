@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -23,6 +24,26 @@ namespace Diapixel.Sketch2D
             if (Input.GetMouseButtonDown(1) && !IsMouseOverUI())
             {
                 pixelRenderer.PlacePixel(MousePosition(), color);
+
+                StartCoroutine(ContinuePlacePixel());
+            }
+        }
+
+        private IEnumerator ContinuePlacePixel()
+        {
+            Vector2Int lastMousePosition = MousePosition();
+
+            // While button pressed, continue to place pixels
+            while (Input.GetMouseButton(1))
+            {
+                if (MousePosition() != lastMousePosition)
+                {
+                    pixelRenderer.PlacePixel(MousePosition(), color);
+                }
+
+                lastMousePosition = MousePosition();
+
+                yield return null;
             }
         }
 
@@ -31,6 +52,26 @@ namespace Diapixel.Sketch2D
             if (Input.GetMouseButtonDown(0) && !IsMouseOverUI())
             {
                 pixelRenderer.BreakPixel(MousePosition());
+
+                StartCoroutine(ContinueBreakPixel());
+            }
+        }
+
+        private IEnumerator ContinueBreakPixel()
+        {
+            Vector2Int lastMousePosition = MousePosition();
+
+            // While button pressed, continue to place pixels
+            while (Input.GetMouseButton(0))
+            {
+                if (MousePosition() != lastMousePosition)
+                {
+                    pixelRenderer.BreakPixel(MousePosition());
+                }
+
+                lastMousePosition = MousePosition();
+
+                yield return null;
             }
         }
 
