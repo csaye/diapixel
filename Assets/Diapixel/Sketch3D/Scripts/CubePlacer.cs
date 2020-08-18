@@ -10,6 +10,7 @@ namespace Diapixel.Sketch3D
         [Header("References")]
         [SerializeField] private CubeRenderer cubeRenderer = null;
         [SerializeField] private Transform userTransform = null;
+        [SerializeField] private Transform cameraTransform = null;
         [SerializeField] private LayerMask cubeLayer = new LayerMask();
 
         public Color color {get; set;} = Color.black;
@@ -31,9 +32,9 @@ namespace Diapixel.Sketch3D
             {
                 RaycastHit hitInfo;
 
-                if (Physics.Raycast(userTransform.position, userTransform.forward, out hitInfo, reach, cubeLayer))
+                if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hitInfo, reach, cubeLayer))
                 {
-                    Vector3 pointInTargetCube = hitInfo.point - (userTransform.forward * 0.01f);
+                    Vector3 pointInTargetCube = hitInfo.point - (cameraTransform.forward * 0.01f);
 
                     Vector3Int position = Operation.FloorToInt(pointInTargetCube);
                     cubeRenderer.PlaceCube(position, color);
@@ -58,9 +59,9 @@ namespace Diapixel.Sketch3D
             {
                 RaycastHit hitInfo;
 
-                if (Physics.Raycast(userTransform.position, userTransform.forward, out hitInfo, reach, cubeLayer))
+                if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hitInfo, reach, cubeLayer))
                 {
-                    Vector3 pointInTargetCube = hitInfo.point + (userTransform.forward * 0.01f);
+                    Vector3 pointInTargetCube = hitInfo.point + (cameraTransform.forward * 0.01f);
 
                     Vector3Int position = Operation.FloorToInt(pointInTargetCube);
                     cubeRenderer.BreakCube(position);

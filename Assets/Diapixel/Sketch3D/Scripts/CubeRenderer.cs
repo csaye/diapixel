@@ -9,11 +9,11 @@ namespace Diapixel.Sketch3D
         private Mesh mesh;
         private MeshCollider meshCollider;
 
-        private List<Vector3Int> cubes = new List<Vector3Int>();
+        [SerializeField] private List<Vector3Int> cubes = new List<Vector3Int>();
 
-        private List<Vector3> vertices = new List<Vector3>();
-        private List<int> triangles = new List<int>();
-        private List<Color> colors = new List<Color>();
+        [SerializeField] private List<Vector3> vertices = new List<Vector3>();
+        [SerializeField] private List<int> triangles = new List<int>();
+        [SerializeField] private List<Color> colors = new List<Color>();
 
         private void Start()
         {
@@ -31,6 +31,7 @@ namespace Diapixel.Sketch3D
             }
 
             cubes.Add(position);
+            Debug.Log("adding cube at " + position);
 
             AddVertices(position);
 
@@ -92,8 +93,11 @@ namespace Diapixel.Sketch3D
             // If no cube to break, return
             if (!cubes.Contains(position))
             {
+                Debug.Log("no cube at " + position);
                 return;
             }
+
+            Debug.Log("breaking cube");
 
             RemoveVertices(position);
 
@@ -105,6 +109,7 @@ namespace Diapixel.Sketch3D
 
         private void RemoveVertices(Vector3Int position)
         {
+            Debug.Log("removing vertices");
             int cubeIndex = cubes.IndexOf(position);
 
             int positionIndex = cubeIndex * 24;

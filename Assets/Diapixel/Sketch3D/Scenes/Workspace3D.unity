@@ -722,6 +722,7 @@ MonoBehaviour:
   reach: 5
   cubeRenderer: {fileID: 969904749}
   userTransform: {fileID: 320438931}
+  cameraTransform: {fileID: 1311349265}
   cubeLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -1595,6 +1596,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8598ae4ccad04d79afdaf815c1d905a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubes: []
+  vertices: []
+  triangles: 
+  colors: []
 --- !u!1 &1016807238
 GameObject:
   m_ObjectHideFlags: 0
