@@ -23,7 +23,7 @@ namespace Diapixel.Sketch3D
 
         private void PlaceCube()
         {
-            if (Input.GetKeyDown("p"))
+            if (Input.GetKeyDown("b"))
             {
                 cubeRenderer.PlaceCube(UserPosition(), color);
             }
