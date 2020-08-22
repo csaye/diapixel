@@ -20,6 +20,9 @@ namespace Diapixel.Sketch3D
             MeshFilter meshFilter = GetComponent<MeshFilter>();
             mesh = meshFilter.mesh;
             meshCollider = GetComponent<MeshCollider>();
+
+            // Place base cube to start
+            PlaceCube(Vector3Int.down, Color.black);
         }
 
         public void PlaceCube(Vector3Int position, Color color)
