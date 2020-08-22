@@ -9,16 +9,19 @@ namespace Diapixel.Sketch3D
         [SerializeField] private float moveSpeed = 0;
         [SerializeField] private float sprintSpeed = 0;
         [SerializeField] private float flySpeed = 0;
+        [SerializeField] private float flySprintSpeed = 0;
 
         private CharacterController controller;
 
         private Vector3 flyVelocity;
+        private Vector3 flySprintVelocity;
 
         private void Start()
         {
             controller = GetComponent<CharacterController>();
 
             flyVelocity = new Vector3(0, flySpeed, 0);
+            flySprintVelocity = new Vector3(0, flySprintSpeed, 0);
         }        
 
         private void Update()
@@ -29,7 +32,7 @@ namespace Diapixel.Sketch3D
 
         private void Move()
         {
-            if (Input.GetKey(KeyCode.LeftControl))
+            if (Sprinting())
             {
                 controller.Move(MoveDirection() * sprintSpeed * Time.deltaTime);
             }
@@ -43,12 +46,26 @@ namespace Diapixel.Sketch3D
         {
             if (Input.GetButton("Jump"))
             {
-                controller.Move(flyVelocity * Time.deltaTime);
+                if (Sprinting())
+                {
+                    controller.Move(flySprintVelocity * Time.deltaTime);
+                }
+                else
+                {
+                    controller.Move(flyVelocity * Time.deltaTime);
+                }
             }
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                controller.Move(-flyVelocity * Time.deltaTime);
+                if (Sprinting())
+                {
+                    controller.Move(-flySprintVelocity * Time.deltaTime);
+                }
+                else
+                {
+                    controller.Move(-flyVelocity * Time.deltaTime);
+                }
             }
         }
 
@@ -58,6 +75,11 @@ namespace Diapixel.Sketch3D
             float vertical = Input.GetAxis("Vertical");
 
             return transform.right * horizontal + transform.forward * vertical;
+        }
+
+        private bool Sprinting()
+        {
+            return Input.GetKey(KeyCode.LeftControl);
         }
     }
 }
