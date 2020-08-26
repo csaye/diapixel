@@ -18,7 +18,6 @@ namespace Diapixel.Sketch2D
 
         private Camera cam;
 
-
         private void Start()
         {
             cam = GetComponent<Camera>();
